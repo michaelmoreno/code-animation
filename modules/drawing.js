@@ -8,6 +8,13 @@ function drawLine(c, startX, startY, endX, endY, lineWidth, strokeColor) {
     c.closePath();
 }
 
+function drawRect(c, x, y, width, height, fillColor, strokeColor) {
+    c.beginPath();
+    c.rect(x, y, width, height);
+    c.fillStyle = fillColor;
+    c.fill();
+    c.closePath();
+}
 
 function drawTriangle(c, x, y, size, fillColor) {
     c.beginPath();
@@ -20,4 +27,5 @@ function drawTriangle(c, x, y, size, fillColor) {
 }
 
 
-export { drawLine, drawTriangle }
+
+export { drawLine, drawRect, drawTriangle }

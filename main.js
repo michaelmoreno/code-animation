@@ -12,9 +12,6 @@ const resize = () => {
 resize();
 window.addEventListener('resize', resize);
 
-
-
-
 function generateLines() {
     let lines = []
     for (let i = 1; i < 10; i++) {
@@ -30,7 +27,6 @@ function renderLines(lines) {
 }
 
 
-// get mouse position on canvas
 let mouse = {x: undefined, y: undefined, down: false}
 canvas.addEventListener('mousemove', (event) => {
     mouse.x = event.clientX
@@ -41,12 +37,18 @@ document.onmousedown = function(event) {
 }
 
 
-// keypress listener
+const timeline = new Timeline(0, canvas.height - canvas.height * .25, canvas.width, canvas.height * .25);
+
+let key = null
 document.onkeydown = function(event) {
+    key = event.key
     if (event.key.length === 1) {
         lines[0].addCharacter(event.key)
     }
-    // if key is backspace
+    timeline.play = true
+    if (event.key === " ") {
+        timeline.play = !timeline.play
+    }
     if (event.key === 'Backspace') {
         lines[0].content.splice(5, 1)
     }
@@ -54,7 +56,6 @@ document.onkeydown = function(event) {
 
 const lines = generateLines();
 
-const timeline = new Timeline(0, canvas.height - canvas.height * .25, canvas.width, canvas.height * .25);
 
 
 function render() {
@@ -63,8 +64,10 @@ function render() {
     lines.forEach(line => {
         line.cursorDetection(mouse)
     })
-    timeline.detectCursor(mouse)
+    timeline.detectCursor(mouse, key)
+    timeline.update()
     timeline.render(ctx)
+    key = null
     requestAnimationFrame(render);
 }
 
