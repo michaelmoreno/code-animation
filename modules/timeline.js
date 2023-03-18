@@ -1,15 +1,16 @@
 import { drawLine, drawRect, drawTriangle } from './drawing.js';
+// import { Rect } from './body.js'; 
+import { Rectangle } from './body.js';
 
-class Timeline {
+// class Playhead extends 
+
+class Timeline extends Rectangle {
     constructor(x, y, width, height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        super(x, y, width, height);
         this.duration = 10;
         this.FPS = 100;
-        this.currentFrame = 0
-        this.fractional = 5
+        this.currentFrame = 0;
+        this.fractional = 5;
         this.currentMarker = 0;
         this.frames = new Array(this.duration * this.FPS);
         this.play = false;
@@ -39,7 +40,7 @@ class Timeline {
             y: this.buttons.y
         }
     }
-    update() {
+     update() {
         if (!this.play) 
             return
         let marker = (this.currentFrame / this.FPS);

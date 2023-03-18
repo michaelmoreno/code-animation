@@ -1,5 +1,9 @@
 import { Line } from './modules/line.js'
 import { Timeline } from './modules/timeline.js'
+// import { Rect } from './modules/body.js'
+
+import { container } from './modules/body.js'
+console.log(container);
 
 const canvas = document.querySelector("#scene");
 const ctx = canvas.getContext("2d");
@@ -11,6 +15,7 @@ const resize = () => {
 
 resize();
 window.addEventListener('resize', resize);
+
 
 function generateLines() {
     let lines = []
@@ -55,6 +60,8 @@ document.onkeydown = function(event) {
 }
 
 const lines = generateLines();
+
+console.log(container)
 
 
 

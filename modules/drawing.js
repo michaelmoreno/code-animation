@@ -13,6 +13,10 @@ function drawRect(c, x, y, width, height, fillColor, strokeColor) {
     c.rect(x, y, width, height);
     c.fillStyle = fillColor;
     c.fill();
+    if (strokeColor) {
+        c.strokeStyle = strokeColor;
+        c.stroke();
+    }
     c.closePath();
 }
 
